@@ -1,8 +1,8 @@
 {
-  "name": "template-action",
+  "name": "semver-action",
   "version": "0.1.0",
-  "description": "A template for a github-action",
-  "main": "action.js",
+  "description": "A github action to find the next semver tag based on current existing tags",
+  "main": "index.js",
   "private": true,
   "scripts": {
     "build": "npx tsc",
@@ -11,24 +11,27 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/breachvr/github-action-template.git"
+    "url": "git+https://github.com/breachvr/semver-action.git"
   },
   "keywords": [
     "github",
     "action",
-    "template"
+    "semantic versioning",
+    "semver"
   ],
   "author": "Breach AS",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/breachvr/github-action-template/issues"
+    "url": "https://github.com/breachvr/semver-action/issues"
   },
-  "homepage": "https://github.com/breachvr/github-action-template#readme",
+  "homepage": "https://github.com/breachvr/semver-action#readme",
   "dependencies": {
-    "@actions/core": "^1.6.0"
+    "@actions/core": "^1.6.0",
+    "semver": "^7.3.5"
   },
   "devDependencies": {
+    "@types/semver": "^7.3.9",
     "@vercel/ncc": "^0.33.3",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5"  
   }
 }
