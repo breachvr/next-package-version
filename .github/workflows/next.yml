@@ -1,0 +1,38 @@
+name: Create next
+
+on:
+  push:
+    branches:
+     - main
+
+jobs:
+  create-latest:
+    name: Create latest
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          git config --global user.name 'github-bot'
+          git config --global user.email 'github-bot@users.noreply.github.com'
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'npm'
+      - run: npm install
+      - run: |
+          npm run package
+          cp action.yml dist/
+          cp README.md dist/
+          cp package* dist/
+          git add .
+          git commit -m "preparing latest package"
+      - name: Split branch
+        run: |
+          ls -la
+          cd dist/
+          ls -la
+          cd ..
+          git subtree split -P dist -b package
+      - name: Push changes
+        run: | 
+          git checkout "package"
+          git push -u -f origin "package"
