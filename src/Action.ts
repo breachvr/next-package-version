@@ -1,10 +1,24 @@
 import * as core from '@actions/core';
+import simpleGit, { SimpleGit } from 'simple-git'
 
 class Action {
 
-    constructor() { }
+    private git: SimpleGit;
 
-    public async Run() { }
+    constructor() {
+        this.git = simpleGit();
+    }
+
+    public async Run() {
+        const release = core.getInput('release');
+        const pre_release = core.getBooleanInput('pre-release');
+
+        let response = await this.git.tags();
+
+        response.all.forEach(element => {
+            console.log('Tag: ' + element);
+        });
+    }
 }
 
 try {
