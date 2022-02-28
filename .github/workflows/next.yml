@@ -10,9 +10,9 @@ jobs:
     name: Create next
     runs-on: ubuntu-latest
     steps:
-      # - run: |
-      #     git config --global user.name 'github-bot'
-      #     git config --global user.email 'github-bot@users.noreply.github.com'
+      - run: |
+          git config --global user.name 'github-bot'
+          git config --global user.email 'github-bot@users.noreply.github.com'
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
