@@ -9,12 +9,12 @@ jobs:
   create-latest:
     name: Create next
     env:
-      GITHUB_TOKEN: ${{ secrets.PACKAGE_RELEASE_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.PACKAGE_RELEASE_TOKEN }} # Make sure pushes from this actually trigger other workflows
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          git config --global user.name 'github-bot'
-          git config --global user.email 'github-bot@users.noreply.github.com'
+      # - run: |
+      #     git config --global user.name 'github-bot'
+      #     git config --global user.email 'github-bot@users.noreply.github.com'
       - uses: actions/checkout@v2
         # with:
           # token: ${{ secrets.PACKAGE_RELEASE_TOKEN }}
