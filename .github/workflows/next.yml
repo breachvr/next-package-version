@@ -6,17 +6,17 @@ on:
      - main
 
 jobs:
-  create-latest:
+  create-next:
     # name: Create next
     env:
       BRANCH: next
     #   GITHUB_TOKEN: ${{ secrets.PACKAGE_RELEASE_TOKEN }} # Make sure pushes from this actually trigger other workflows
     runs-on: ubuntu-latest
     steps:
-      - name: Setup git
-        run: |
-          git config --global user.name 'Weibye'
-          git config --global user.email '13300393+Weibye@users.noreply.github.com'
+      # - name: Setup git
+      #   run: |
+      #     git config --global user.name 'Weibye'
+      #     git config --global user.email '13300393+Weibye@users.noreply.github.com'
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
