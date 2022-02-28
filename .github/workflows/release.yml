@@ -1,0 +1,25 @@
+name: Release Action
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-mode:
+        type: choice
+        required: true
+        description: Release type
+        options:
+          - patch
+          - minor
+          - major
+      pre-release:
+        type: boolean
+        description: Is this a pre-release version?
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      BRANCH: package
+    steps:
+      - uses: actions/checkout@v2
+      
