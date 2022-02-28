@@ -25,24 +25,27 @@ jobs:
         uses: actions/setup-node@v2
         with:
           cache: 'npm'
-      - name: push
+      - name: Package
         run: |
           git checkout -b "next"
-          mv README.md README2.md
+          npm install
+          npm run package
+          cp action.yml dist/
+          cp README.md dist/
+          cp package* dist/
           git add .
-          git commit -am "Testing"
+          git commit -m "preparing latest package"
           git push -u -f origin "next"
+        # run: |
+        #   git checkout -b "next"
+        #   mv README.md README2.md
+        #   git add .
+        #   git commit -am "Testing"
+        #   git push -u -f origin "next"
+
+        #   # npm install
 
 
-          # npm install
-
-      # - run: |
-      #     npm run package
-      #     cp action.yml dist/
-      #     cp README.md dist/
-      #     cp package* dist/
-      #     git add .
-      #     git commit -m "preparing latest package"
       # - name: Split branch
       #   run: |
       #     ls -la
