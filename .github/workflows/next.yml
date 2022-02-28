@@ -13,10 +13,14 @@ jobs:
     #   GITHUB_TOKEN: ${{ secrets.PACKAGE_RELEASE_TOKEN }} # Make sure pushes from this actually trigger other workflows
     runs-on: ubuntu-latest
     steps:
-      # - name: Setup git
-      #   run: |
-      #     git config --global user.name 'Weibye'
-      #     git config --global user.email '13300393+Weibye@users.noreply.github.com'
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          cache: 'npm'
+      - name: Setup git
+        run: |
+          git config --global user.name 'Weibye'
+          git config --global user.email '13300393+Weibye@users.noreply.github.com'
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
@@ -25,13 +29,11 @@ jobs:
         run: |
           git checkout -b "next"
           mv README.md README2.md
+          git add .
           git commit -am "Testing"
           git push -u -f origin "next"
 
-      # - name: Setup node
-        # uses: actions/setup-node@v2
-        # with:
-          # cache: 'npm'
+
           # npm install
 
       # - run: |
