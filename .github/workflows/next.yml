@@ -22,7 +22,7 @@ jobs:
         with:
           cache: 'npm'
       - run: npm install
-        run: |
+      - run: |
           npm run package
           cp action.yml dist/
           cp README.md dist/
