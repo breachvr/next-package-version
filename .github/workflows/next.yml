@@ -8,14 +8,16 @@ on:
 jobs:
   create-latest:
     name: Create next
+    env:
+      GITHUB_TOKEN: ${{ secrets.PACKAGE_RELEASE_TOKEN }}
     runs-on: ubuntu-latest
     steps:
       - run: |
           git config --global user.name 'github-bot'
           git config --global user.email 'github-bot@users.noreply.github.com'
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.PACKAGE_RELEASE_TOKEN }}
+        # with:
+          # token: ${{ secrets.PACKAGE_RELEASE_TOKEN }}
       - uses: actions/setup-node@v2
         with:
           cache: 'npm'
