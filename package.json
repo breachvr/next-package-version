@@ -2,7 +2,7 @@
   "name": "semver-action",
   "version": "0.1.0",
   "description": "A github action to find the next semver tag based on current existing tags",
-  "main": "index.js",
+  "main": "ts-out/Action.js",
   "private": true,
   "scripts": {
     "build": "npx tsc",
