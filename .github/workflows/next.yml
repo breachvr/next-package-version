@@ -16,8 +16,8 @@ jobs:
           git config --global user.name 'Weibye'
           git config --global user.email '13300393+Weibye@users.noreply.github.com'
       - uses: actions/checkout@v2
-        # with:
-          # token: ${{ secrets.PACKAGE_RELEASE_TOKEN }}
+        with:
+          token: ${{ secrets.PACKAGE_RELEASE_TOKEN }}
       - uses: actions/setup-node@v2
         with:
           cache: 'npm'
