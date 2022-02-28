@@ -9,36 +9,46 @@ jobs:
   create-latest:
     # name: Create next
     env:
-      BRANC: next
+      BRANCH: next
     #   GITHUB_TOKEN: ${{ secrets.PACKAGE_RELEASE_TOKEN }} # Make sure pushes from this actually trigger other workflows
     runs-on: ubuntu-latest
     steps:
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          cache: 'npm'
-      - run: |
+      - name: Setup git
+        run: |
           git config --global user.name 'Weibye'
           git config --global user.email '13300393+Weibye@users.noreply.github.com'
-      - uses: actions/checkout@v2
+      - name: Checkout repo
+        uses: actions/checkout@v2
         with:
           token: ${{ secrets.PACKAGE_RELEASE_TOKEN }}
-      - run: |
-          npm install
-          npm run package
-          cp action.yml dist/
-          cp README.md dist/
-          cp package* dist/
-          git add .
-          git commit -m "preparing latest package"
-      - name: Split branch
+      - name: push
         run: |
-          ls -la
-          cd dist/
-          ls -la
-          cd ..
-          git subtree split -P dist -b next
-      - name: Push changes
-        run: | 
           git checkout "next"
+          mv README.md README2.md
+          git commit -am "Testing"
           git push -u -f origin "next"
+
+      # - name: Setup node
+        # uses: actions/setup-node@v2
+        # with:
+          # cache: 'npm'
+          # npm install
+
+      # - run: |
+      #     npm run package
+      #     cp action.yml dist/
+      #     cp README.md dist/
+      #     cp package* dist/
+      #     git add .
+      #     git commit -m "preparing latest package"
+      # - name: Split branch
+      #   run: |
+      #     ls -la
+      #     cd dist/
+      #     ls -la
+      #     cd ..
+      #     git subtree split -P dist -b next
+      # - name: Push changes
+      #   run: | 
+      #     git checkout "next"
+      #     git push -u -f origin "next"
