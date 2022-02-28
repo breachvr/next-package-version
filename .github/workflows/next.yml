@@ -36,15 +36,7 @@ jobs:
           git add .
           git commit -m "preparing latest package"
           git push -u -f origin "next"
-        # run: |
-        #   git checkout -b "next"
-        #   mv README.md README2.md
-        #   git add .
-        #   git commit -am "Testing"
-        #   git push -u -f origin "next"
-
-        #   # npm install
-
+      # This is now working so far, just need to properly split it over
 
       # - name: Split branch
       #   run: |
