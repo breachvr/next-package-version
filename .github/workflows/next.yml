@@ -23,7 +23,7 @@ jobs:
           token: ${{ secrets.PACKAGE_RELEASE_TOKEN }}
       - name: push
         run: |
-          git checkout "next"
+          git checkout -b "next"
           mv README.md README2.md
           git commit -am "Testing"
           git push -u -f origin "next"
