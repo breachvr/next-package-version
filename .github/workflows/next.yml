@@ -17,7 +17,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           cache: 'npm'
-        run: npm install
       - run: |
           git config --global user.name 'Weibye'
           git config --global user.email '13300393+Weibye@users.noreply.github.com'
@@ -25,6 +24,7 @@ jobs:
         with:
           token: ${{ secrets.PACKAGE_RELEASE_TOKEN }}
       - run: |
+          npm install
           npm run package
           cp action.yml dist/
           cp README.md dist/
