@@ -1,0 +1,17 @@
+name: Test Action
+
+on:
+  push:
+    branches:
+      - next
+
+jobs:
+  test-action:
+    name: Create next
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+          with:
+            release: 'minor'
+            pre-release: true
