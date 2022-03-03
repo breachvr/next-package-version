@@ -27,15 +27,16 @@ jobs:
           cache: 'npm'
       - name: Package
         run: |
-          git checkout -b "next"
           npm install
           npm run package
           cp action.yml dist/
           cp README.md dist/
           cp package* dist/
+          git subtree split -P dist -b "$BRANCH"
+          git checkout -b "$BRANCH"
           git add .
-          git commit -m "preparing latest package"
-          git push -u -f origin "next"
+          git commit -m "Preparing package from $env.GITHUB_SHA"
+          git push -u -f origin "$BRANCH"
       # This is now working so far, just need to properly split it over
 
       # - name: Split branch
@@ -44,7 +45,7 @@ jobs:
       #     cd dist/
       #     ls -la
       #     cd ..
-      #     git subtree split -P dist -b next
+      
       # - name: Push changes
       #   run: | 
       #     git checkout "next"
