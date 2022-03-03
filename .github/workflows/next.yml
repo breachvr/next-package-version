@@ -33,7 +33,7 @@ jobs:
           cp README.md dist/
           cp package* dist/
           git add .
-          git commit -m "Preparing package from ${{ GITHUB_SHA }}"
+          git commit -m "Preparing package from $GITHUB_SHA"
           git subtree split -P dist -b "$BRANCH"
           git checkout "$BRANCH"
           git push -u -f origin "$BRANCH"
