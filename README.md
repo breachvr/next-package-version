@@ -1,9 +1,11 @@
-# github-action-template
+# Semver-Action
 
-A template for setting up new github-actions
 
-1. Change name and values in `package.json`
-2. Change name and values in `action.yml`
-3. More?
-4. `npm install`
-5. -> Start development
+This github action finds the next semantic version tag based on the tags currently existing in the repo. To do that it does the following:
+
+1. Collect all semantic version tags from the repo
+    - using format `*.*.*-*+*`
+2. uses provided input:
+    - release: `'major' | 'minor' | 'patch'`
+    - pre-release: `true | false`
+3. outputs the next version, adhering to semantic versioning as defined in https://semver.org/spec/v2.0.0.html

@@ -10,13 +10,15 @@ jobs:
     # name: Create next
     env:
       BRANCH: next
+      USER: Weibye
+      EMAIL: 13300393+Weibye@users.noreply.github.com
     #   GITHUB_TOKEN: ${{ secrets.PACKAGE_RELEASE_TOKEN }} # Make sure pushes from this actually trigger other workflows
     runs-on: ubuntu-latest
     steps:
       - name: Setup git
         run: |
-          git config --global user.name 'Weibye'
-          git config --global user.email '13300393+Weibye@users.noreply.github.com'
+          git config --global user.name '$USER'
+          git config --global user.email '$EMAIL'
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
@@ -37,16 +39,3 @@ jobs:
           git subtree split -P dist -b "$BRANCH"
           git checkout "$BRANCH"
           git push -u -f origin "$BRANCH"
-      # This is now working so far, just need to properly split it over
-
-      # - name: Split branch
-      #   run: |
-      #     ls -la
-      #     cd dist/
-      #     ls -la
-      #     cd ..
-      
-      # - name: Push changes
-      #   run: | 
-      #     git checkout "next"
-      #     git push -u -f origin "next"
