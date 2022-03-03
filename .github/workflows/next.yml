@@ -33,9 +33,9 @@ jobs:
           cp README.md dist/
           cp package* dist/
           git add .
-          git commit -m "Preparing package from $env.GITHUB_SHA"
+          git commit -m "Preparing package from ${{ env.GITHUB_SHA }}"
           git subtree split -P dist -b "$BRANCH"
-          git checkout -b "$BRANCH"
+          git checkout "$BRANCH"
           git push -u -f origin "$BRANCH"
       # This is now working so far, just need to properly split it over
 
