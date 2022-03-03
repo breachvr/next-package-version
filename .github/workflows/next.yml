@@ -32,6 +32,7 @@ jobs:
           npm install
           npm run package
           cp action.yml dist/
+          cp LICENCE dist/
           cp README.md dist/
           cp package* dist/
           git add .
