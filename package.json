@@ -28,7 +28,7 @@
   "dependencies": {
     "@actions/core": "^1.6.0",
     "semver": "^7.3.5",
-    "simple-git": "^3.2.6"
+    "simple-git": "^3.5.0"
   },
   "devDependencies": {
     "@types/semver": "^7.3.9",
