@@ -1,7 +1,11 @@
-name: semver-action
-description: A github action to find the next semver tag based on current existing tags
+name: next-package-action
+description: A github action to find the next semantic version tag based on current existing version in a package.json file
 author: Breach AS
 inputs:
+  path:
+    required: false
+    description: Path to a package.json file to look for existing version
+    default: './package.json'
   release:
     required: false
     description: Defines if major, minor or patch should be bumped

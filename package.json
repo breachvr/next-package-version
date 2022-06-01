@@ -1,7 +1,7 @@
 {
-  "name": "semver-action",
+  "name": "next-package-version",
   "version": "0.1.0",
-  "description": "A github action to find the next semver tag based on current existing tags",
+  "description": "A github action to find the next semantic version tag based on current existing version in a package.json file",
   "main": "index.js",
   "private": true,
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/breachvr/semver-action.git"
+    "url": "git+https://github.com/breachvr/next-package-version.git"
   },
   "keywords": [
     "github",
@@ -22,9 +22,9 @@
   "author": "Breach AS",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/breachvr/semver-action/issues"
+    "url": "https://github.com/breachvr/next-package-version/issues"
   },
-  "homepage": "https://github.com/breachvr/semver-action#readme",
+  "homepage": "https://github.com/breachvr/next-package-version#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
     "semver": "^7.3.5",

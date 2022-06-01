@@ -1,11 +1,43 @@
-# Semver-Action
+# Next Package Version
+
+This github action finds the next semantic version tag based on the tags currently existing in the `package.json` and which release-type is specified.
+
+## Inputs
+
+### `path`
+
+```yml
+description: Path to a package.json file to look for existing version. It needs to have a valid { "version" : "x.y.z" } field
+required: false
+default: './package.json'
+type: string
+```
 
 
-This github action finds the next semantic version tag based on the tags currently existing in the repo. To do that it does the following:
+### `release`
 
-1. Collect all semantic version tags from the repo
-    - using format `*.*.*-*+*`
-2. uses provided input:
-    - release: `'major' | 'minor' | 'patch'`
-    - pre-release: `true | false`
-3. outputs the next version, adhering to semantic versioning as defined in https://semver.org/spec/v2.0.0.html
+```yml
+description: Defines if major, minor or patch should be bumped
+required: false
+default: 'patch'
+type: string
+```
+Valid inputs: `'major' | 'minor' | 'patch'`
+
+### `pre-release`
+
+```yml
+description: True if this should be a pre-release
+required: false
+default: false
+type: boolean
+```
+Valid inputs: `true | false`
+
+## Outputs
+
+### `version`
+
+```yml
+description: The calculated new version tag to use
+```
