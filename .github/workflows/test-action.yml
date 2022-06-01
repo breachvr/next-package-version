@@ -10,8 +10,8 @@ jobs:
     name: Create next
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2 # Checkout the main repo
-      - uses: actions/checkout@v2 # Grab the package from next and place it here
+      - uses: actions/checkout@v3 # Checkout the main repo
+      - uses: actions/checkout@v3 # Grab the package from next and place it here
         with:
           ref: 'next'
           path: './github/actions/'
