@@ -1,49 +1,54 @@
 import * as core from '@actions/core';
 import { ReleaseType } from 'semver';
-import simpleGit, { SimpleGit } from 'simple-git'
 import { Semver } from './Semver';
+import * as fs from 'fs';
 
-const default_tag: string = '0.1.0';
 
 export class Action {
 
-    private git: SimpleGit;
     private semver: Semver;
 
     constructor() {
-        this.git = simpleGit();
         this.semver = new Semver();
     }
 
     public async Run() {
 
-        let release = this.GetReleaseType();
-        let pre_release = this.GetPreRelease();
+        const path = core.getInput('path');
+        if (!path) {
+            core.setFailed('Not a valid path');
+            return;
+        }
+
+        if (!fs.existsSync(path)) {
+            core.setFailed('Path does not point to valid file: ' + path);
+            return;
+        }
+
+        const raw_data = fs.readFileSync(path, { encoding: 'utf8' });
+        if (!raw_data) {
+            core.setFailed('File empty or not existing: ' + path);
+            return;
+        }
+
+        const current_version = JSON.parse(raw_data).version;
+        if (!this.semver.ValidTag(current_version)) {
+            core.setFailed('No valid tags found in ' + path);
+            return;
+        }
+
+        const release = this.GetReleaseType();
+        const pre_release = this.GetPreRelease();
 
         if (!release || pre_release === undefined)
         {
-            // throw new Error('Invalid inputs');
+            core.setFailed('Release or pre-release not valid.');
+            return;
         }
-        else
-        {
-            let next_tag: string;
 
-            let git_tags = await this.git.tags();
-
-            // If we find some tags
-            if (git_tags.all && git_tags.all.length > 0) {
-                let tags = this.semver.ValidTags(git_tags.all);
-                let latest = this.semver.GetLatest(tags);
-
-                next_tag = this.semver.GetNextVersion(latest, release, pre_release);
-                console.log('Next tag: ' + next_tag);
-            } else {
-                next_tag = default_tag;
-                console.log('No tags found in repo, using default: ' + next_tag);
-            }
-
-            core.setOutput('version', next_tag);
-        }
+        const next_version = this.semver.GetNextVersion(current_version, release, pre_release);
+        console.log('Next version: ' + next_version);
+        core.setOutput('version', next_version);
     }
 
     private GetReleaseType() : ReleaseType | undefined {
@@ -71,6 +76,5 @@ export class Action {
 try {
     new Action().Run();
 } catch (error: any) {
-    console.log('Action failed: ' + (error as Error).message);
-    core.setFailed(error.message);
+    core.setFailed(error.message as string);
 }

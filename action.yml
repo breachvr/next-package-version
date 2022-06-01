@@ -14,6 +14,7 @@ inputs:
     required: false
     description: True if this should be a pre-release
     default: false
+
 outputs:
   version:
     description: The calculated new version tag to use

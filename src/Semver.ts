@@ -2,6 +2,10 @@ import * as sem from 'semver';
 
 export class Semver {
 
+    public ValidTag(string: string | undefined) {
+        return sem.valid(string);
+    }
+
     public ValidTags(tags: Array<string>) {
         let valid_tags: Array<string> = [];
         tags.forEach(tag => {
