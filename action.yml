@@ -1,0 +1,28 @@
+name: next-package-action
+description: A github action to find the next semantic version tag based on current existing version in a package.json file
+author: Breach AS
+inputs:
+  path:
+    required: false
+    description: Path to a package.json file to look for existing version
+    default: './package.json'
+  release:
+    required: false
+    description: Defines if major, minor or patch should be bumped
+    default: 'patch'
+  pre-release:
+    required: false
+    description: True if this should be a pre-release
+    default: false
+
+outputs:
+  version:
+    description: The calculated new version tag to use
+
+branding:
+  icon: 'upload-cloud'
+  color: 'blue'
+
+runs:
+  using: 'node16'
+  main: 'index.js' # Entrypoint of action
