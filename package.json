@@ -27,7 +27,7 @@
   "homepage": "https://github.com/breachvr/next-package-version#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
-    "semver": "^7.3.5",
+    "semver": "^7.3.7",
     "simple-git": "^3.2.6"
   },
   "devDependencies": {
