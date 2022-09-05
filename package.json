@@ -1,0 +1,38 @@
+{
+  "name": "next-package-version",
+  "version": "0.1.0",
+  "description": "A github action to find the next semantic version tag based on current existing version in a package.json file",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build": "npx tsc",
+    "package": "npx ncc build src/Action.ts -m --license third-party-licences.txt",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/breachvr/next-package-version.git"
+  },
+  "keywords": [
+    "github",
+    "action",
+    "semantic versioning",
+    "semver"
+  ],
+  "author": "Breach AS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/breachvr/next-package-version/issues"
+  },
+  "homepage": "https://github.com/breachvr/next-package-version#readme",
+  "dependencies": {
+    "@actions/core": "^1.9.1",
+    "semver": "^7.3.7"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.14",
+    "@types/semver": "^7.3.10",
+    "@vercel/ncc": "^0.34.0",
+    "typescript": "^4.7.4"
+  }
+}
