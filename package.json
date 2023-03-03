@@ -27,11 +27,11 @@
   "homepage": "https://github.com/breachvr/next-package-version#readme",
   "dependencies": {
     "@actions/core": "^1.10.0",
-    "semver": "^7.3.7"
+    "semver": "^7.3.8"
   },
   "devDependencies": {
     "@types/node": "^18.14.2",
-    "@types/semver": "^7.3.10",
+    "@types/semver": "^7.3.13",
     "@vercel/ncc": "^0.34.0",
     "typescript": "^4.9.5"
   }
